@@ -1,0 +1,114 @@
+{% extends 'admin/admin_sidebar.html' %}
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 4px solid orange;">View volunteer Detail</h5>
+        <div class="container-fluid">
+            <table class="table table-hover">
+                <tr align="center" style="background-color: rgb(216, 211, 207);">
+                    <td colspan="4" style="font-size : 20px; color:red;">Volunteer Details</td>
+                </tr>
+                <tr>
+                    <th>Volunteer Name</th>
+                    <td>{{volunteer.user.first_name}} {{volunteer.user.last_name}}</td>
+
+                    <th> volunteer Contact</th>
+                    <td>{{volunteer.contact}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>volunteer Email</th>
+                    <td>{{volunteer.user.username}}</td>
+
+                    <th>Registration Date</th>
+                    <td>{{volunteer.regdate}}</td>
+
+                </tr>
+
+
+                <tr>
+                    <th>Volunteer Image</th>
+                    <td><img src="{{volunteer.userpic.url}}" width="50px" height="50px"></td>
+
+                    <th> Volunteer's ID Pic</th>
+                    <td><img src="{{volunteer.idpic.url}}" width="50px" height="50px"></td>
+
+                </tr>
+
+                <tr>
+                    <th>Volunteer's Address</th>
+                    <td colspan="3">{{volunteer.address }}</td>
+
+                </tr>
+
+                {% if volunteer.status == "pending" %}
+                <form method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <th>Status</th>
+                        <td colspan="3">
+                            <select name="status" class="form-control" required>
+                                <option value="accept">Select One</option>
+                                <option value="accept">Accept</option>
+                                <option value="reject">Reject</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Admin Remark</th>
+                        <td colspan="3">
+                            <textarea name="adminremark" class="form-control" required
+                                      placeholder="Please enter your Remarks"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td onclose="3">
+                            <button type="submit" class="btn btn-primary">Update <i
+                                    class="fa fa-arrow-circle-right"></i></button>
+                        </td>
+                    </tr>
+                </form>
+
+                {% else %}
+                <tr>
+                    <th>Status</th>
+                    <td style="text-transform: capitalize;">{{volunteer.status}}</td>
+                    <th>Updation Date</th>
+                    <td>{{ volunteer.updationdate}}</td>
+                </tr>
+
+                <tr>
+                    <th>Admin Remarks</th>
+                    <td colspan="3">{{volunteer.adminremark}}</td>
+
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% if error == 'no' %}
+<script>
+    alert(" Status & Remark Has been Successfully Update ");
+    window.location=("{% url 'view_volunteer_details' volunteer.id %}")
+
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert("Invalid Login Credentials, try again.... ")
+
+</script>
+{% endif %}
+
+{% endblock %}
+
+
+<!-- jssc reg no 230301025183 -- 21-01-1995 >

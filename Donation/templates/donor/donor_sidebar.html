@@ -1,0 +1,130 @@
+{% load static %}
+<html>
+
+<head>
+  <title>Donation management system</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+  <script src="{% static 'js/sidebar.js'%}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+</head>
+
+<body>
+  <!-- vertical navigation bar Start -->
+  <div class="bg-white vertical-nav" id="sidebar">
+    <div class="bg-light py-4 px-3 mb-1">
+      <p class="font-weight-bold text-uppercase px-3 sidebar-title " style="color:black;font-size:14px;text-align: center;">Donation Management System</p>
+      <div class="media d-flex align-item-center ml-5">
+        <img  src="{{request.user.donor_set.all.0.userpic.url}}" height="100" width="80"
+          class=" mr-3 rounded-circle img-thumbnail shadow-sm text-center">
+      </div>
+      <div class="media-body">
+        <h4 class="nb-0 text center">Donor</h4>
+        <p class="text-muted mb-0 ml-5" style="color:black;">{{request.user.username}}</p>
+      </div>
+    </div>
+    <ul class="nav flex-column bg-white">
+
+      <li class="nav-item">
+        <a href="{% url 'donor_home'%}" class="nav-link  text-dark bg-light ">
+          <i class="fas fa-tachometer-alt fa-fw mr-3 text-primary"></i>
+          Dashboard</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'donate_now'%}" class="nav-link  text-dark bg-light ">
+          <i class="fas fa-ribbon mr-3 text-primary"></i>
+          Donate Now</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'donation_history'%}" class="nav-link  text-dark bg-light ">
+          <i class="fa fa-history mr-3 text-primary"></i>
+          Donate History</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+          <i class="fas fa-chart-bar fa-fw mr-3 text-primary"></i>
+          Services</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Add Services</a>
+          <a class="dropdown-item" href="#">Manage Services</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+          <i class="fa-solid fa-pen about-box mr-3 text-primary"></i>
+          Queries</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Unread Queries</a>
+          <a class="dropdown-item" href="#">Read Queries</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark bg-light ">
+          <i class="fa fa-search mr-3 text-primary"></i>
+          Serch</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+          <i class="fa fa-file aria-hidden=true mr-3 text-primary"></i>
+         Reports</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Booking b/n two Date</a>
+            <a class="dropdown-item" href="#">Queries b/n two Date</a>
+          </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark bg-light ">
+          <i class="fas fa-key mr-3 text-primary"></i>
+          Change Password</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark bg-light ">
+          <i class="fa fa-sign-out mr-3 text-primary"></i>
+          Logout</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- vertical navigation bar END -->
+
+  <!-- Content Placeholder start -->
+  <div class="page-content p-4" id="content">
+    <a href="{% url 'logout'%}" title="logout" class="text-white float-right">Logout</a>
+    <button id="sidebarCollapse" type="button" class="btn btn-light rounded-pill bg-white shadow-sm px-4 mb-4">
+      <i class="fas fa-bars mr-2"></i>
+      <small class="text-uppercase font-weight-bold">Toggle</small></button>
+    {% block main %}
+
+    {% endblock %}
+  </div>
+  <!--  Content Placeholder End -->
+</body>
+
+</html>

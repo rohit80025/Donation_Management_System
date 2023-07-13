@@ -1,0 +1,43 @@
+{% extends 'admin/admin_sidebar.html' %}
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 4px solid orange;">New volunteer</h5>
+        <div class="container-fluid">
+            <table class="table table-hover" id="example">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Volunteer Name</th>
+                        <th>Email ID</th>
+                        <th>Contact Number</th>
+                        <th>Registation Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in volunteer %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.user.first_name }} {{ i.user.last_name }}</td>
+                        <td>{{ i.user.username }}</td>
+                        <td>{{ i.contact }}</td>
+                        <td>{{ i.regdate }}</td>
+                        <td>{{ i.status }}</td>
+
+                        <td><a href="{% url 'view_volunteer_details' i.id %}" class="text-primary">View Details</a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

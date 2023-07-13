@@ -1,0 +1,37 @@
+{% include 'header.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/admin_login.css'%}">
+ 
+
+  <div class="login-page">
+    <div class="form">
+        <h3>Admin Login </h3>
+       
+      <form class="login-form" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="username" name="username">
+        <input type="password" placeholder="password" name="password">
+        <button>login</button>
+        <p class="message">Not registered? <a href="{% url 'Home' %}">Go back</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+  </script>
+
+{% if error == 'no' %}
+<script>
+    alert("Logged In Successfully");
+    window.location=("{% url 'Admin_home'%}")
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert("Invalid Login Credentials, try again.... ")
+</script>
+{% endif %}

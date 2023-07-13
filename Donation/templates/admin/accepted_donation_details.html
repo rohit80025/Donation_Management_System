@@ -1,0 +1,151 @@
+{% extends 'admin/admin_sidebar.html' %}
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 4px solid orange;">View Donation Detail</h5>
+        <div class="container-fluid">
+            <table class="table table-hover">
+                <tr align="center" style="background-color: rgb(216, 211, 207);">
+                    <td colspan="4" style="font-size : 20px; color:red;">Donor Details</td>
+                </tr>
+                <tr>
+                    <th>Donor Name</th>
+                    <td>{{donation.donor.user.first_name}} {{donation.donor.user.last_name}}</td>
+
+                    <th> Donor Contact</th>
+                    <td>{{donation.donor.contact}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Donor Email</th>
+                    <td>{{donation.donor.user.username}}</td>
+
+                    <th> Donor Image</th>
+                    <td><img src="{{donation.donor.userpic.url}}" width="50px" height="50px"></td>
+
+                </tr>
+
+                <tr align="center" style="background-color: rgb(216, 211, 207);">
+                    <td colspan="4" style="font-size : 20px; color:red;">Donations Details</td>
+                </tr>
+
+                <tr>
+                    <th>Donation Name</th>
+                    <td>{{donation.donationName}}</td>
+
+                    <th> Donor Image</th>
+                    <td><img src="{{donation.donationpic.url}}" width="50px" height="50px"></td>
+
+                </tr>
+
+                <tr>
+                    <th>Colaction Date</th>
+                    <td>{{donation.colloctionloc}}</td>
+
+                    <th> Dnation Date</th>
+                    <td>{{donation.donationdate}}</td>
+
+                </tr>
+
+
+                <tr>
+                    <th>Status</th>
+                    <td style="text-transform: capitalize;">{{donation.status}}</td>
+                    <th>Updation Date</th>
+                    <td>{{ donation.updationDate}}</td>
+                </tr>
+
+                <tr>
+                    <th>Admin Remarks</th>
+                    <td colspan="3">{{donation.adminRemarks}}</td>
+                </tr>
+
+                {% if not donation.volunteer %}
+                <form method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <th>Select Donation Distribution Area</th>
+                        <td colspan="3">
+                            <select name="donationareaid" class="form-control" required>
+                                {% for i in donationarea%}
+                                <option value="{{i.id}}">{{i.areaname}}</option>
+                                {% endfor %}
+
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Select Volunteer</th>
+                        <td colspan="3">
+                            <select name="volunteerid" class="form-control" required>
+                                {% for i in volunteer %}
+                                <option value="{{i.id}}">{{i.user.username}} [ {{i.user.first_name}} {{i.user.last_name}} ]</option>
+                                 {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td onclose="3">
+                            <button type="submit" class="btn btn-primary">Update <i
+                                    class="fa fa-arrow-circle-right"></i></button>
+                        </td>
+                    </tr>
+                </form>
+
+                {% else %}
+                <tr>
+                    <th>Donation Area</th>
+                    <td style="text-transform: capitalize;">{{donation.donationArea.areaname}}</td>
+                    <th>Updation Date</th>
+                    <td>{{ donation.updationDate}}</td>
+                </tr>
+
+                <tr>
+                    <th>Volunteer</th>
+                    <td colspan="3">{{donation.volunteer.user.username}} [ {{donation.volunteer.user.first_name}} {{donation.volunteer.user.last_name}} ]</td>
+
+                </tr>
+                {% endif %}
+
+                {% if not donation.volunteerRemarks %}
+                <tr>
+                    <th>Volunteer Remark </th>
+                    <td colspan="3">Not Update Yet</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <th>Volunteer Remark </th>
+                    <td colspan="3">{{donation.volunteerRemarks}}</td>
+                </tr>
+
+                {% endif %}
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% if error == 'no' %}
+<script>
+    alert(" Volunteer allocation Successfully ");
+    window.location=("{% url 'accepted_donation_details' donation.id %}")
+
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert("Invalid Login Credentials, try again.... ")
+
+</script>
+{% endif %}
+
+{% endblock %}
+
+
+<!-- jssc reg no 230301025183 -- 21-01-1995 >

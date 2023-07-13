@@ -1,0 +1,132 @@
+.navbar-brand {
+
+  font-weight: bold;
+  font-family: 'Monotype Corsiva';
+  font-size: 35px;
+
+}
+
+
+
+.navbar-brand img {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.nav-link {
+  color: rgb(240, 237, 237) !important;
+  font-size: 20px;
+
+}
+
+
+.nav-link:hover {
+  color: rgb(111, 0, 255) !important;
+  background-color: rgb(115, 255, 0);
+  border-radius: 10px;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.page-title {
+  color: red;
+  font-size: 2em;
+  padding: .5em 1em;
+  box-shadow: 0px 0px opx #b0b0b0;
+  width: 30%;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+
+/* carousal start CSS */
+
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item>div {
+    display: none;
+  }
+
+  .carousel-inner .carousel-item>div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(33.333%);
+  }
+
+  .carousel-inner .carousel-item-left.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-33.333%);
+  }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+}
+
+/* carousal End CSS  */
+
+/* blink Start CSS  */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* blink End CSS  */
+
+/* footer  Start CSS  */
+#footer a :hover {
+  color: yellow;
+}
+
+
+/* footer End CSS  */
+
+/* scrollbtn  Start CSS  */
+#scrollbtn {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  z-index: 99;
+  border: none;
+  color: red;
+  background: #00abff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* scrollbtn End CSS  */
+
+html {
+  scroll-behavior: smooth;
+
+}
+

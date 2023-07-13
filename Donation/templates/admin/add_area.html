@@ -1,0 +1,46 @@
+{% extends 'admin/admin_sidebar.html' %}
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 4px solid orange;">Add Donation Area</h5>
+        <div class="container-fluid">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="form-row">
+
+                        <div class="col-sm-12">
+                            <label>Donation Area Name :</label>
+                            <input type="text" name="areaname" class="form-control" placeholder="Donation Area" required>
+                                
+                        </div>
+                        <div class="col-sm-12">
+                            <label>Description :</label>
+                            <textarea name="description" class="form-control" cols="10" rows="5"
+                                placeholder="Description "></textarea>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary px-3 m-2">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Area data has been succesfully add')
+    window.location=("{% url 'manage_area' %}");
+</script>
+{% endif%}
+
+{% if error == "yes" %}
+<script>
+    alert('Some thing went wrong .Plese try again')
+    
+</script>
+{% endif%}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'admin/admin_sidebar.html' %}
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 4px solid orange;">Acceped Donations</h5>
+        <div class="container-fluid">
+            <table class="table table-hover" id="example">
+                <thead>
+                    <tr>
+                            <th>S.No</th>
+                            <th>Donation Name</th>
+                            <th>Donation Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in donation %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.donationName }}</td>
+                        <td>{{ i.donationdate }}</td>
+                        <td>{{ i.status }}</td>
+                        <td><a href="{% url 'accepted_donation_details' i.id %}">View Details</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

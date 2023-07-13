@@ -1,0 +1,43 @@
+{% include 'header.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/all_login.css'%}">
+<hr class="mt-0">
+<div class="container mt-5">
+    <h2 class="h2">Login as...</h2>
+    <div class="row mt-5">
+        <div class="col-lg-4">
+            <div class="card">
+                <img src="{% static 'images/Donr.png'%}" class="card-img-top" style="width: 100%;height: 200%;">
+                <div class="card-body">
+                    <h4 class="card-title">Donor</h4>
+                    <p class="card-text">Some example text</p>
+                    <a href="{% url 'donor_login' %}" class="btn btn-primary">Go to donor Login</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <img src="{% static 'images/vol.png'%}" class="card-img-top" style="width: 100%;height: 200%;">
+                <div class="card-body">
+                    <h4 class="card-title">Volunteer</h4>
+                    <p class="card-text">Some example text</p>
+                    <a href="{% url 'Volunteer_login' %}" class="btn btn-primary tex">Go to volunteer Login</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <img src="{% static 'images/ADMIN.png'%}" class="card-img-top" style="width: 100%;height: 200%;">
+                <div class="card-body">
+                    <h4 class="card-title">Admin</h4>
+                    <p class="card-text">Some example text</p>
+                    <a href="{% url 'Admin_login' %}" class="btn btn-primary">Go to admin Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
