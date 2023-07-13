@@ -162,6 +162,32 @@ def donation_delivered_volunteer(request):
     donation = Donation.objects.filter(volunteer=volunteer, status="Donation Deliverd Successfully")
     return render(request, 'volunteer/donation_delivered_volunteer.html', locals())
 
+def profile_volunteer(request):
+    if not request.user.is_authenticated:
+        return redirect('Volunteer_login')
+    error = ""
+    user = request.user
+    volunteer = Volunteer.objects.get(user=user)
+    if request.method == 'POST':
+        fn = request.POST['firstname']
+        ln = request.POST['lastname']
+        em = request.POST['email']
+        contact = request.POST['contact']
+        pwd = request.POST['pwd']
+        userpic = request.FILES['userpic']
+        idpic = request.FILES['idpic']
+        address = request.POST['address']
+        aboutme = request.POST['aboutme']
+        try:
+            user = User.objects.create_user(
+                first_name=fn, last_name=ln, username=em, password=pwd)
+            Volunteer.objects.create(user=user, contact=contact,
+                                     userpic=userpic, idpic=idpic, address=address, aboutme=aboutme, status="pending")
+            error = "no"
+        except:
+            error = "yes"
+    return render(request, 'volunteer/profile_volunteer.html', locals())
+
 
 
 
