@@ -146,6 +146,22 @@ def donation_rec_details(request, pid):
 
     return render(request, 'volunteer/donation_rec_details.html', locals())
 
+def donation_not_rec_volunteer(request):
+    if not request.user.is_authenticated:
+        return redirect('Volunteer_login')
+    user = request.user
+    volunteer = Volunteer.objects.get(user=user)
+    donation = Donation.objects.filter(volunteer=volunteer, status="Donation notReceived")
+    return render(request, 'volunteer/donation_not_rec_volunteer.html', locals())
+
+def donation_delivered_volunteer(request):
+    if not request.user.is_authenticated:
+        return redirect('Volunteer_login')
+    user = request.user
+    volunteer = Volunteer.objects.get(user=user)
+    donation = Donation.objects.filter(volunteer=volunteer, status="Donation Deliverd Successfully")
+    return render(request, 'volunteer/donation_delivered_volunteer.html', locals())
+
 
 
 

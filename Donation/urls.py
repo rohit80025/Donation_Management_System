@@ -39,6 +39,8 @@ urlpatterns = [
                   path('donation_collection_details/<int:pid>', views.donation_collection_details, name='donation_collection_details'),
                   path('donation_rec_volunteer/', views.donation_rec_volunteer, name='donation_rec_volunteer'),
                   path('donation_rec_details/<int:pid>', views.donation_rec_details, name='donation_rec_details'),
+                  path('donation_not_rec_volunteer/', views.donation_not_rec_volunteer, name='donation_not_rec_volunteer'),
+                  path('donation_delivered_volunteer/',views.donation_delivered_volunteer, name='donation_delivered_volunteer'),
 
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
